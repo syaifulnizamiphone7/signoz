@@ -5,10 +5,6 @@ interface AlertRuleContextType {
 	setIsAlertRuleDisabled: React.Dispatch<
 		React.SetStateAction<boolean | undefined>
 	>;
-	alertRuleLabels: Map<string, Record<string, string>>;
-	setAlertRuleLabels: React.Dispatch<
-		React.SetStateAction<Map<string, Record<string, string>>>
-	>;
 }
 
 const AlertRuleContext = createContext<AlertRuleContextType | undefined>(
@@ -24,18 +20,12 @@ function AlertRuleProvider({
 		boolean | undefined
 	>(undefined);
 
-	const [alertRuleLabels, setAlertRuleLabels] = useState<
-		Map<string, Record<string, string>>
-	>(new Map());
-
 	const value = React.useMemo(
 		() => ({
 			isAlertRuleDisabled,
 			setIsAlertRuleDisabled,
-			alertRuleLabels,
-			setAlertRuleLabels,
 		}),
-		[isAlertRuleDisabled, alertRuleLabels],
+		[isAlertRuleDisabled],
 	);
 
 	return (
